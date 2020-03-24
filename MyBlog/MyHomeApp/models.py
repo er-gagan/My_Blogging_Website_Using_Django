@@ -8,3 +8,6 @@ class Contact(models.Model):
     Phone=models.CharField(max_length=15)
     Content=models.CharField(max_length=300)
     timeStamp = models.DateTimeField(auto_now_add=True,blank=True)
+    
+    def __str__(self):
+        return self.Name
