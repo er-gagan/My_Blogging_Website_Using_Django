@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 def home(request):
-    logout(request)
+    # logout(request)
     return render(request,"home/home.html")
 
 def contact(request):
