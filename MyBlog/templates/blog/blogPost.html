@@ -16,26 +16,24 @@
 
     <form action="/blog/postComment" method="POST">
         {% csrf_token %}
-        <input type="text" name="comment" placeholder="Enter Comment Here..">
+        <div class="form-group">
+            <label for="exampleInputText">Post Comment</label>
+            <input type="text" name="comment" class="form-control" placeholder="Enter Comment Here..">
+        </div>
         <input type="hidden" name="postSno" value="{{post.S_No}}">
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-primary" value="Submit">
     </form>
+    {% for comment in comments %}
 
-    <div class="row my-2">
-        <div class="col-md-2 bg-success">Image Here..</div>
-        <div class="col-md-10 bg-primary">Comment Here..</div>
+    <div class="row my-3">
+        <div class="col-md-1">
+            <img src="{% static 'img/user.png' %}" class="rounded mx-auto d-block w-50" alt="user">
+        </div>
+        <div class="col-md-11">
+            <b>{{comment.User.username}}</b> at {{comment.TimeStamp}}
+            <div>{{comment.comment}}</div>
+        </div>
     </div>
-    <div class="row my-2">
-        <div class="col-md-2 bg-success">Image Here..</div>
-        <div class="col-md-10 bg-primary">Comment Here..</div>
-    </div>
-    <div class="row my-2">
-        <div class="col-md-2 bg-success">Image Here..</div>
-        <div class="col-md-10 bg-primary">Comment Here..</div>
-    </div>
-    <div class="row my-2">
-        <div class="col-md-2 bg-success">Image Here..</div>
-        <div class="col-md-10 bg-primary">Comment Here..</div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock body %}
