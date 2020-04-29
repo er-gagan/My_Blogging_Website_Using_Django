@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}BlogPost
 {% endblock title %}
 
@@ -35,8 +36,8 @@
             <img src="{% static 'img/user.png' %}" class="rounded mx-auto d-block w-50" alt="user">
         </div>
         <div class="col-md-11">
-            <b>{{comment.User.username}}</b> at {{comment.TimeStamp}}
-            <div>{{comment.comment}}</div>
+            <b>{{comment.User.username}}</b> <span class="badge badge-secondary">{{comment.TimeStamp | naturaltime}}</span>
+            <div class="container text-justify">{{comment.comment}}</div>
         </div>
     </div>
     {% endfor %}
