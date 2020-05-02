@@ -42,6 +42,7 @@
                 class="badge badge-secondary">{{comment.TimeStamp | naturaltime}}</span>
             <div class="container text-justify">{{comment.comment}}</div>
             <div class="reply mx-0">
+                {% if user.is_authenticated %}
                 <button class="btn btn-primary mt-1 ml-4 btn-sm" type="button" data-toggle="collapse"
                     data-target="#replyBox{{comment.S_No}}" aria-expanded="false"
                     aria-controls="replyBox{{comment.S_No}}">
@@ -62,13 +63,30 @@
                         </form>
                     </div>
                 </div>
-                <div class="replies mt-2 ml-4">
-                    
+                {% else %}
+                <button class="btn btn-primary mt-1 ml-4 btn-sm" type="button" data-toggle="collapse"
+                    data-target="#replyBox{{comment.S_No}}" aria-expanded="false"
+                    aria-controls="replyBox{{comment.S_No}}" disabled>
+                    LogIn to Reply
+                </button>
+                {% endif %}
+                <div class="replies ml-4">
+
                     {% for reply in replyDict|get_val:comment.S_No %}
-                        {{reply}}
+                    <div class="row my-2">
+                        <div class="col-md-1">
+                            <img src="{% static 'img/user.png' %}" class="rounded mx-auto d-block w-50" alt="user">
+                        </div>
+
+                        <div class="col-md-11">
+                            <b>{{reply.User.username}}</b> <span
+                                class="badge badge-secondary">{{reply.TimeStamp | naturaltime}}</span>
+                            <div class="container text-justify">{{reply.comment}}</div>
+                        </div>
                         <br>
+                    </div>
                     {% endfor %}
-                        
+
                 </div>
 
 
